@@ -30,6 +30,9 @@ namespace projectFerreteria
         {
             InitializeComponent();
             cbCategoria.SelectedIndex = 0;
+            btnAgregar.Enabled = false;
+            btnBuscar.Enabled = false;
+            btnEditar.Enabled = false;
                        
         }
 
@@ -57,13 +60,13 @@ namespace projectFerreteria
                 consulta.CommandText = insertar;
                 consulta.ExecuteNonQuery();
                 conn.Close();
-                MessageBox.Show("Registro exitoso");
+                MessageBox.Show("Producto agregado");
 
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Error al insertar datos", ex.ToString());
+                MessageBox.Show(" Error al insertar datos del producto", ex.ToString());
             }
         }
 
@@ -88,14 +91,14 @@ namespace projectFerreteria
                 consulta.CommandText = set;
                 consulta.ExecuteNonQuery();
                 conn.Close();
-                MessageBox.Show("Actualizacion exitosa");
+                MessageBox.Show("Se actualizaron los datos del producto");
 
 
             }
             catch (Exception ex)
 
             {
-                MessageBox.Show(" Error al Editar datos", ex.ToString());
+                MessageBox.Show(" Error al Editar datos del producto", ex.ToString());
                 MessageBox.Show( ex.ToString());
             }
             MySqlConnection conB = CConexion.establecerConexion();
@@ -144,7 +147,7 @@ namespace projectFerreteria
                 consulta.CommandText = insertar;
                 consulta.ExecuteNonQuery();
                 conn.Close();
-                MessageBox.Show("Registro exitoso");
+                MessageBox.Show("Tu actualizacion se registro en la  bitacora");
 
 
             }
@@ -182,12 +185,93 @@ namespace projectFerreteria
                 nCantidad = leer.GetString(5);
                 nPrecio = leer.GetString(6);
 
-
+                btnEditar.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("No se encontro ningun producto asociado a ese codigo");
             }
 
             conn.Close();
 
 
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el caracter
+            }
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+            validarCampos();
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            validarCampos();
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el caracter
+            }
+        }
+
+        public void validarCampos()
+        {
+            //validamos cada campo cada que se hace cambio en alguno de ellos
+            if (!string.IsNullOrWhiteSpace(txtCodigo.Text) &&
+                txtCodigo.Text.Length >= 8 &&
+                !string.IsNullOrWhiteSpace(txtNombre.Text) &&
+                !string.IsNullOrWhiteSpace(txtDimencion.Text) &&
+                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
+                !string.IsNullOrWhiteSpace(txtPrecio.Text) &&
+                !string.IsNullOrWhiteSpace(txtCantidad.Text))
+            {
+                btnAgregar.Enabled = true;
+            }
+            else
+            {
+                btnAgregar.Enabled=false;
+            }
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+            validarCampos();
+
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo dígitos, un punto decimal y la tecla de retroceso (backspace)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el caracter
+            }
+
+            // Permitir solo un punto decimal
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true; // Ignorar el segundo punto decimal
+            }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            validarCampos();
+        }
+
+        private void txtDimencion_TextChanged(object sender, EventArgs e)
+        {
+            validarCampos();
         }
     }
 }

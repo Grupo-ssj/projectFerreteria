@@ -35,7 +35,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgContenedor = new System.Windows.Forms.DataGridView();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContenedor)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +42,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnRegistrar);
             this.panel1.Controls.Add(this.btnInventario);
             this.panel1.Controls.Add(this.btnPerfiles);
@@ -102,17 +100,6 @@
             this.dgContenedor.Size = new System.Drawing.Size(800, 493);
             this.dgContenedor.TabIndex = 2;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(7, 153);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 41);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Informes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,7 +109,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";
-            this.Text = "Dashboard";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgContenedor)).EndInit();
             this.ResumeLayout(false);
@@ -138,6 +124,5 @@
         private System.Windows.Forms.Button btnPerfiles;
         private System.Windows.Forms.Button btnInventario;
         private System.Windows.Forms.Button btnRegistrar;
-        private System.Windows.Forms.Button button1;
     }
 }

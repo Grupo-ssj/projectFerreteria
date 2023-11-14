@@ -23,6 +23,9 @@ namespace projectFerreteria
         public Login()
         {
             InitializeComponent();
+            btnSesion.Enabled = false;
+            btnPassf.Enabled = false;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,8 +47,26 @@ namespace projectFerreteria
             //texto para probar la conexion
             // clases.CConexion obConect = new clases.CConexion();
             // obConect.establecerConexion();
+            login();
 
-            if (txtUsuario.Text!="" || txtPass.Text!="") {
+
+            
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+            validarCampos(txtUsuario.Text, txtPass.Text);
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       public void login()
+        {
+            if (txtUsuario.Text != "" || txtPass.Text != "")
+            {
 
                 string sql = "server = localhost; port= 3307; user id=root;password=1234567; database=ferreteria;";
                 MySqlConnection conectar = new MySqlConnection(sql);
@@ -60,36 +81,55 @@ namespace projectFerreteria
 
                 code.CommandText = ("Select * from usuario WHERE usuario= '" + txtUsuario.Text + "' and pass = '" + txtPass.Text + "'");
                 MySqlDataReader leer = code.ExecuteReader();
-                MessageBox.Show("----" + leer.ToString());
+               // MessageBox.Show("----" + leer.ToString());
                 if (leer.Read())
                 {
                     Usuarios.usuario = txtUsuario.Text;
-                    MessageBox.Show("Bienvenido" + Usuarios.usuario);
+                    MessageBox.Show("Bienvenido: " + Usuarios.usuario);
                     Dashboard d = new Dashboard();
                     d.Show(this);
                     this.Hide();
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Usuario o Contraseña no validos");
-                } conectar.Close();
+                }
+                conectar.Close();
 
-            }else
+            }
+            else
             {
                 MessageBox.Show("Debe intruducir sus credenciales");
             }
+
         }
 
-        private void txtPass_TextChanged(object sender, EventArgs e)
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
-
+            validarCampos(txtUsuario.Text, txtPass.Text);
+            if (txtUsuario.Text.Length>=3)
+            {
+                btnPassf.Enabled = true;
+            }
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        public void validarCampos(string nombre, string password)
         {
-
+            if (nombre.Length >= 3 && password.Length>=8)
+            {
+                btnSesion.Enabled = true;
+                
+            }
         }
 
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //aqui validaremos que el campo ususario solo acepte letras
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Ignorar el caracter
+            }
 
-        
+        }
     }
 }

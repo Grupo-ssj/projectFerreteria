@@ -30,60 +30,81 @@
         {
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPassf = new System.Windows.Forms.Button();
             this.btnSesion = new System.Windows.Forms.Button();
+            this.lbUsuario = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(355, 106);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsuario.Location = new System.Drawing.Point(266, 86);
+            this.txtUsuario.MaxLength = 15;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(295, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(222, 20);
             this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(355, 190);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPass.Location = new System.Drawing.Point(266, 154);
+            this.txtPass.MaxLength = 15;
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(295, 22);
+            this.txtPass.Size = new System.Drawing.Size(222, 20);
             this.txtPass.TabIndex = 1;
             this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
-            // button1
+            // btnPassf
             // 
-            this.button1.Location = new System.Drawing.Point(387, 300);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(231, 28);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "olvide mi  contraseña";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPassf.Location = new System.Drawing.Point(290, 244);
+            this.btnPassf.Name = "btnPassf";
+            this.btnPassf.Size = new System.Drawing.Size(173, 23);
+            this.btnPassf.TabIndex = 2;
+            this.btnPassf.Text = "olvide mi  contraseña";
+            this.btnPassf.UseVisualStyleBackColor = true;
+            this.btnPassf.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnSesion
             // 
-            this.btnSesion.Location = new System.Drawing.Point(355, 252);
-            this.btnSesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSesion.Location = new System.Drawing.Point(266, 205);
             this.btnSesion.Name = "btnSesion";
-            this.btnSesion.Size = new System.Drawing.Size(296, 28);
+            this.btnSesion.Size = new System.Drawing.Size(222, 23);
             this.btnSesion.TabIndex = 3;
             this.btnSesion.Text = "Iniciar sesion";
             this.btnSesion.UseVisualStyleBackColor = true;
             this.btnSesion.Click += new System.EventHandler(this.button2_Click);
             // 
+            // lbUsuario
+            // 
+            this.lbUsuario.AutoSize = true;
+            this.lbUsuario.Location = new System.Drawing.Point(173, 92);
+            this.lbUsuario.Name = "lbUsuario";
+            this.lbUsuario.Size = new System.Drawing.Size(43, 13);
+            this.lbUsuario.TabIndex = 4;
+            this.lbUsuario.Text = "Usuario";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(176, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Contraseña";
+            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 519);
+            this.ClientSize = new System.Drawing.Size(734, 422);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbUsuario);
             this.Controls.Add(this.btnSesion);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPassf);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtUsuario);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Login_Load);
@@ -96,8 +117,10 @@
 
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPassf;
         private System.Windows.Forms.Button btnSesion;
+        private System.Windows.Forms.Label lbUsuario;
+        private System.Windows.Forms.Label label1;
     }
 }
 
