@@ -29,13 +29,7 @@
         private void InitializeComponent()
         {
             this.panelInventario = new System.Windows.Forms.Panel();
-            this.btnRefrescar = new System.Windows.Forms.Button();
-            this.lbValor = new System.Windows.Forms.Label();
-            this.txtValor = new System.Windows.Forms.TextBox();
-            this.btncantidadB = new System.Windows.Forms.Button();
-            this.btnBitacora = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.pnInventario = new System.Windows.Forms.Panel();
             this.dgInvnetario = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,10 +38,16 @@
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnInventario = new System.Windows.Forms.Panel();
+            this.btnRefrescar = new System.Windows.Forms.Button();
+            this.lbValor = new System.Windows.Forms.Label();
+            this.txtValor = new System.Windows.Forms.TextBox();
+            this.btncantidadB = new System.Windows.Forms.Button();
+            this.btnBitacora = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.panelInventario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgInvnetario)).BeginInit();
             this.pnInventario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgInvnetario)).BeginInit();
             this.SuspendLayout();
             // 
             // panelInventario
@@ -66,68 +66,14 @@
             this.panelInventario.TabIndex = 0;
             this.panelInventario.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInventario_Paint);
             // 
-            // btnRefrescar
+            // pnInventario
             // 
-            this.btnRefrescar.Location = new System.Drawing.Point(321, 28);
-            this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(61, 23);
-            this.btnRefrescar.TabIndex = 7;
-            this.btnRefrescar.Text = "Refrescar";
-            this.btnRefrescar.UseVisualStyleBackColor = true;
-            this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
-            // 
-            // lbValor
-            // 
-            this.lbValor.AutoSize = true;
-            this.lbValor.Location = new System.Drawing.Point(14, 402);
-            this.lbValor.Name = "lbValor";
-            this.lbValor.Size = new System.Drawing.Size(27, 13);
-            this.lbValor.TabIndex = 6;
-            this.lbValor.Text = "Lps:";
-            // 
-            // txtValor
-            // 
-            this.txtValor.Location = new System.Drawing.Point(47, 402);
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(108, 20);
-            this.txtValor.TabIndex = 5;
-            // 
-            // btncantidadB
-            // 
-            this.btncantidadB.Location = new System.Drawing.Point(532, 28);
-            this.btncantidadB.Name = "btncantidadB";
-            this.btncantidadB.Size = new System.Drawing.Size(109, 23);
-            this.btncantidadB.TabIndex = 4;
-            this.btncantidadB.Text = "Cantidad Baja";
-            this.btncantidadB.UseVisualStyleBackColor = true;
-            this.btncantidadB.Click += new System.EventHandler(this.btncantidadB_Click);
-            // 
-            // btnBitacora
-            // 
-            this.btnBitacora.Location = new System.Drawing.Point(666, 28);
-            this.btnBitacora.Name = "btnBitacora";
-            this.btnBitacora.Size = new System.Drawing.Size(75, 23);
-            this.btnBitacora.TabIndex = 3;
-            this.btnBitacora.Text = "Bitacora";
-            this.btnBitacora.UseVisualStyleBackColor = true;
-            this.btnBitacora.Click += new System.EventHandler(this.btnBitacora_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(240, 28);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Location = new System.Drawing.Point(64, 28);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(160, 20);
-            this.txtBuscar.TabIndex = 1;
+            this.pnInventario.Controls.Add(this.dgInvnetario);
+            this.pnInventario.Location = new System.Drawing.Point(14, 57);
+            this.pnInventario.Name = "pnInventario";
+            this.pnInventario.Size = new System.Drawing.Size(776, 326);
+            this.pnInventario.TabIndex = 8;
+            this.pnInventario.Paint += new System.Windows.Forms.PaintEventHandler(this.pnInventario_Paint);
             // 
             // dgInvnetario
             // 
@@ -181,14 +127,70 @@
             this.Precio.HeaderText = "Precio";
             this.Precio.Name = "Precio";
             // 
-            // pnInventario
+            // btnRefrescar
             // 
-            this.pnInventario.Controls.Add(this.dgInvnetario);
-            this.pnInventario.Location = new System.Drawing.Point(14, 57);
-            this.pnInventario.Name = "pnInventario";
-            this.pnInventario.Size = new System.Drawing.Size(776, 326);
-            this.pnInventario.TabIndex = 8;
-            this.pnInventario.Paint += new System.Windows.Forms.PaintEventHandler(this.pnInventario_Paint);
+            this.btnRefrescar.Location = new System.Drawing.Point(321, 28);
+            this.btnRefrescar.Name = "btnRefrescar";
+            this.btnRefrescar.Size = new System.Drawing.Size(61, 23);
+            this.btnRefrescar.TabIndex = 7;
+            this.btnRefrescar.Text = "Refrescar";
+            this.btnRefrescar.UseVisualStyleBackColor = true;
+            this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
+            // 
+            // lbValor
+            // 
+            this.lbValor.AutoSize = true;
+            this.lbValor.Location = new System.Drawing.Point(14, 402);
+            this.lbValor.Name = "lbValor";
+            this.lbValor.Size = new System.Drawing.Size(27, 13);
+            this.lbValor.TabIndex = 6;
+            this.lbValor.Text = "Lps:";
+            // 
+            // txtValor
+            // 
+            this.txtValor.Location = new System.Drawing.Point(47, 402);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(108, 20);
+            this.txtValor.TabIndex = 5;
+            // 
+            // btncantidadB
+            // 
+            this.btncantidadB.Location = new System.Drawing.Point(532, 28);
+            this.btncantidadB.Name = "btncantidadB";
+            this.btncantidadB.Size = new System.Drawing.Size(109, 23);
+            this.btncantidadB.TabIndex = 4;
+            this.btncantidadB.Text = "Cantidad Baja";
+            this.btncantidadB.UseVisualStyleBackColor = true;
+            this.btncantidadB.Click += new System.EventHandler(this.btncantidadB_Click);
+            // 
+            // btnBitacora
+            // 
+            this.btnBitacora.Location = new System.Drawing.Point(666, 28);
+            this.btnBitacora.Name = "btnBitacora";
+            this.btnBitacora.Size = new System.Drawing.Size(75, 23);
+            this.btnBitacora.TabIndex = 3;
+            this.btnBitacora.Text = "Bitacora";
+            this.btnBitacora.UseVisualStyleBackColor = true;
+            this.btnBitacora.Click += new System.EventHandler(this.btnBitacora_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(230, 28);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(64, 28);
+            this.txtBuscar.MaxLength = 20;
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(160, 20);
+            this.txtBuscar.TabIndex = 1;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // Inventario
             // 
@@ -201,8 +203,8 @@
             this.Load += new System.EventHandler(this.Inventario_Load);
             this.panelInventario.ResumeLayout(false);
             this.panelInventario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgInvnetario)).EndInit();
             this.pnInventario.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgInvnetario)).EndInit();
             this.ResumeLayout(false);
 
         }

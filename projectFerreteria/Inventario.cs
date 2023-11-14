@@ -20,7 +20,7 @@ namespace projectFerreteria
         public Inventario()
         {
             InitializeComponent();
-            
+            btnBuscar.Enabled = false;
             
 
         }
@@ -34,50 +34,9 @@ namespace projectFerreteria
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string where = "where ";
-           /* if (txtBuscar.Text != "")
-            {
-                where = where + "codigo like'%" + txtBuscar.Text + "%'" + "XOR nombre like'%" + txtBuscar.Text + "%'";
-            }*/
+            
+                buscarProducto();
 
-                if (txtBuscar.Text != "")
-            {
-                where = where + " codigo like'%" + txtBuscar.Text + "%'" + "OR nombre like'%" + txtBuscar.Text + "%'"
-                    + "OR dimencion like'%" + txtBuscar.Text + "%'" + "OR marca like'%" + txtBuscar.Text + "%'"
-                    + "OR tipo like'%" + txtBuscar.Text + "%'" + "OR cantidad like'%" + txtBuscar.Text + "%'"
-                    + "OR precio like'%" + txtBuscar.Text + "%'";
-            }
-
-           
-
-            string query = "SELECT * FROM productos " + where;
-            MySqlCommand comandDB = new MySqlCommand(query, conectDb);
-            MySqlDataReader reader;
-            dgInvnetario.Rows.Clear();
-            dgInvnetario.Refresh();
-            try
-            {
-                reader = comandDB.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int n = dgInvnetario.Rows.Add();
-                        dgInvnetario.Rows[n].Cells[0].Value = reader.GetString(0);
-
-                        dgInvnetario.Rows[n].Cells[1].Value = reader.GetString(1);
-                        dgInvnetario.Rows[n].Cells[2].Value = reader.GetString(2);
-                        dgInvnetario.Rows[n].Cells[3].Value = reader.GetString(3);
-                        dgInvnetario.Rows[n].Cells[4].Value = reader.GetString(4);
-                        dgInvnetario.Rows[n].Cells[5].Value = reader.GetString(5);
-                        dgInvnetario.Rows[n].Cells[6].Value = reader.GetString(6);
-                    }
-                }
-                reader.Close();
-            }catch (Exception ex)
-            {
-                MessageBox.Show("No hay registros"); 
-            }
         }
 
         private void Inventario_Load(object sender, EventArgs e)
@@ -302,6 +261,68 @@ namespace projectFerreteria
         private void pnInventario_Paint(object sender, PaintEventArgs e)
         {
              
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                btnBuscar.Enabled = true;
+            }
+            
+        }
+        public void buscarProducto()
+        {
+            string where = "where ";
+            /* if (txtBuscar.Text != "")
+             {
+                 where = where + "codigo like'%" + txtBuscar.Text + "%'" + "XOR nombre like'%" + txtBuscar.Text + "%'";
+             }*/
+
+            if (txtBuscar.Text != "")
+            {
+                where = where + " codigo like'%" + txtBuscar.Text + "%'" + "OR nombre like'%" + txtBuscar.Text + "%'"
+                    + "OR dimencion like'%" + txtBuscar.Text + "%'" + "OR marca like'%" + txtBuscar.Text + "%'"
+                    + "OR tipo like'%" + txtBuscar.Text + "%'" + "OR cantidad like'%" + txtBuscar.Text + "%'"
+                    + "OR precio like'%" + txtBuscar.Text + "%'";
+            }
+
+
+
+            string query = "SELECT * FROM productos " + where;
+            MySqlCommand comandDB = new MySqlCommand(query, conectDb);
+            MySqlDataReader reader;
+            dgInvnetario.Rows.Clear();
+            dgInvnetario.Refresh();
+            try
+            {
+                reader = comandDB.ExecuteReader();
+                if(reader.Read())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int n = dgInvnetario.Rows.Add();
+                            dgInvnetario.Rows[n].Cells[0].Value = reader.GetString(0);
+
+                            dgInvnetario.Rows[n].Cells[1].Value = reader.GetString(1);
+                            dgInvnetario.Rows[n].Cells[2].Value = reader.GetString(2);
+                            dgInvnetario.Rows[n].Cells[3].Value = reader.GetString(3);
+                            dgInvnetario.Rows[n].Cells[4].Value = reader.GetString(4);
+                            dgInvnetario.Rows[n].Cells[5].Value = reader.GetString(5);
+                            dgInvnetario.Rows[n].Cells[6].Value = reader.GetString(6);
+                        }
+                    }
+                    reader.Close();
+                }
+                
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se encontro registros de productos con esa especificacion");
+            }
         }
     }
 }

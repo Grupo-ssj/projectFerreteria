@@ -39,18 +39,22 @@
             // txtPass2
             // 
             this.txtPass2.Location = new System.Drawing.Point(254, 134);
+            this.txtPass2.MaxLength = 15;
             this.txtPass2.Name = "txtPass2";
             this.txtPass2.PasswordChar = '*';
             this.txtPass2.Size = new System.Drawing.Size(164, 20);
             this.txtPass2.TabIndex = 0;
+            this.txtPass2.TextChanged += new System.EventHandler(this.txtPass2_TextChanged);
             // 
             // txtPass1
             // 
             this.txtPass1.Location = new System.Drawing.Point(254, 95);
+            this.txtPass1.MaxLength = 15;
             this.txtPass1.Name = "txtPass1";
             this.txtPass1.PasswordChar = '*';
             this.txtPass1.Size = new System.Drawing.Size(164, 20);
             this.txtPass1.TabIndex = 1;
+            this.txtPass1.TextChanged += new System.EventHandler(this.txtPass1_TextChanged);
             // 
             // label1
             // 
