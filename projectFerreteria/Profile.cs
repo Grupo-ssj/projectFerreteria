@@ -163,6 +163,8 @@ namespace projectFerreteria
             buscarUser(txtNombreU.Text);
         }
 
+
+        //pendiente
         public static string EncryptPassword(string password, string salt)
         {
             using (SHA256 sha256 = SHA256.Create())

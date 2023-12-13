@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>@TITULODOCUMENTO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container2 {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+        .container4 {
+            text-align: right;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .contenedor3 {
+            column-count: 2;
+            column-gap: 20px; /* Ajusta el espacio entre las columnas seg�n tus preferencias */
+        }
+
+        .columna {
+            margin-bottom: 10px; /* A�ade espacio entre los elementos en cada columna */
+        }
+
+        .firma-line {
+            border: 1px solid #000;
+            width: 40%;
+            margin: center;
+        }
+
+        .logo {
+            margin-top: 10px;
+            max-width: 100px;
+            max-height: 100px;
+            float: Left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff; /* Azul */
+            color: #fff; /* Texto blanco para contrastar */
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container ">
+        <h2>FERRETERIA SAN FRANCISCO</h2>
+    </div>
+    <div class="container4">
+
+        <p>N.Pedido:@NPEDIDO</p>
+        
+
+    </div>
+    <div class="contenedor3">
+        <div class="columna">
+            <p>RTN: @RTN</p>
+            <p>Proveedor: @PROVEEDOR</p>
+            <p>Dreccion: @DIRECCION</p>
+            <p>Telefono: @TEL</p>
+
+
+        </div>
+
+        <div class="container4">
+
+            
+            <p>Fecha: @FECHAPEDIDO</p>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>@TITULO</h3>
+    </div>
+    <table>
+        <!--<thead>
+            <tr>
+                <th>C�digo</th>
+                <th>Nombre</th>
+                <th>Dimensi�n</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+
+        </thead> -->
+        @HEADERS
+
+        <tbody>
+            @DATOS
+            <!--  <tr>
+
+                    <td>@CODIGO</td>
+            <td>@NOMBRE</td>
+            <td>@DIMENSION</td>
+            <td>@MARCA</td>
+            <td>@TIPO</td>
+            <td>@CANTIDAD</td>
+            <td>@PRECIO</td>
+                    </tr> -->
+            <!-- Puedes agregar m�s filas seg�n sea necesario -->
+
+        </tbody>
+    </table>
+    <div class="container4">
+        <p>Sub Total: @SUBT</p>
+        <p>Isv %15: @ISV</p>
+        <p>Total: @TOTAL</p>
+
+    </div>
+
+    <div class="container2">
+        <p> Observaciones: @COMENTARIOS</p>
+
+    </div>
+    <hr class="firma-line"></hr>
+
+
+    <div class="container">Firma</div>
+</body>
+</html>

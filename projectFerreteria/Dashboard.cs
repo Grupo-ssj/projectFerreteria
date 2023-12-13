@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace projectFerreteria
 {
+
     public partial class Dashboard : Form
     {
         public Dashboard()
         {
             InitializeComponent();
+            
         }
         
         
@@ -71,6 +73,32 @@ namespace projectFerreteria
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             abrirForm(new AgregarProductos());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            abrirForm(new Informes());
+        }
+
+        private void btnRegistros_Click(object sender, EventArgs e)
+        {
+            abrirForm(new Informes());
+        }
+
+        public static void fChange( Form form)
+        {
+             //
+             
+        }
+
+        private void btnPedidos_Click(object sender, EventArgs e)
+        {
+            abrirForm(new Pedidos());
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+            abrirForm(new Proveedores());
         }
     }
 }

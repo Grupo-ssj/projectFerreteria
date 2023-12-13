@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>@TITULODOCUMENTO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container2 {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .container3 {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .firma-line {
+            border: 1px solid #000;
+            width: 40%;
+            margin: center;
+        }
+
+        .logo {
+            margin-top: 10px;
+            max-width: 100px;
+            max-height: 100px;
+            float: Left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff; /* Azul */
+            color: #fff; /* Texto blanco para contrastar */
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <!-- <img src="LogoFerreteria.jpg" alt="Logo de la empresa" class="logo"></img> -->
+
+        </div>
+        <div>
+            <h2>FERRETERIA SAN FRANCISCO</h2>
+            <p>Correo: atencionalcliente@FerreteriaSanFrancisco.com</p>
+            <p>Cel: (504) 9789-8230 | Tel: (504) 2772-8080</p>
+            <p>Direccion: Cane, La Paz</p>
+        </div>
+    </div>
+    <div class="container2">
+
+        <div>
+
+            <p>Fecha: @FECHA</p>
+            <p>Nombre: @USUARIO</p>
+
+        </div>
+    </div>
+    <div class="container3">
+        <h3>@TITULO</h3>
+    </div>
+    <table>
+        <!--<thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Dimensión</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+
+        </thead> -->
+        @HEADERS
+
+        <tbody>
+            @DATOS
+            <!--  <tr>
+
+                    <td>@CODIGO</td>
+            <td>@NOMBRE</td>
+            <td>@DIMENSION</td>
+            <td>@MARCA</td>
+            <td>@TIPO</td>
+            <td>@CANTIDAD</td>
+            <td>@PRECIO</td>
+                    </tr> -->
+            <!-- Puedes agregar más filas según sea necesario -->
+
+        </tbody>
+    </table>
+    <div class="container3">
+
+        <p>Total: @TOTAL</p>
+
+    </div>
+
+    <div class="container2">
+        <p> Observaciones: @COMENTARIOS</p>
+
+    </div>
+    <hr class="firma-line"></hr>
+
+
+    <div class="container">Firma</div>
+</body>
+</html>

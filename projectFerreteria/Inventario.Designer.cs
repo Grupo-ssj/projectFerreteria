@@ -45,6 +45,7 @@
             this.btnBitacora = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnInforme = new System.Windows.Forms.Button();
             this.panelInventario.SuspendLayout();
             this.pnInventario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvnetario)).BeginInit();
@@ -52,6 +53,7 @@
             // 
             // panelInventario
             // 
+            this.panelInventario.Controls.Add(this.btnInforme);
             this.panelInventario.Controls.Add(this.pnInventario);
             this.panelInventario.Controls.Add(this.btnRefrescar);
             this.panelInventario.Controls.Add(this.lbValor);
@@ -192,6 +194,16 @@
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
+            // btnInforme
+            // 
+            this.btnInforme.Location = new System.Drawing.Point(630, 397);
+            this.btnInforme.Name = "btnInforme";
+            this.btnInforme.Size = new System.Drawing.Size(75, 23);
+            this.btnInforme.TabIndex = 9;
+            this.btnInforme.Text = "Informe";
+            this.btnInforme.UseVisualStyleBackColor = true;
+            this.btnInforme.Click += new System.EventHandler(this.btnInforme_Click);
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,5 +240,6 @@
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Panel pnInventario;
+        private System.Windows.Forms.Button btnInforme;
     }
 }

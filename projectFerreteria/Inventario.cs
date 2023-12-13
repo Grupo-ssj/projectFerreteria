@@ -17,6 +17,10 @@ namespace projectFerreteria
         int contador = 0;
         double valor = 00.00;
 
+        // creamos una lista dobre el inventario
+       public static List<Productos> listaP = new List<Productos>();
+
+
         public Inventario()
         {
             InitializeComponent();
@@ -43,8 +47,23 @@ namespace projectFerreteria
         {
             llenarTabla();
         }
+        //------------------------------------------------
+        public class Productos
+        {
+            public string codigo { get; set; }
+            public string nombre { get; set; }
+            public string dimension { get; set; }
+            public string marca { get; set; }
+            public string tipo { get; set; }
+            public string cantidad { get; set; }
+            public string precio { get; set; }
+            public double total { get; set; }
 
-      public void llenarTabla(){
+        }
+        //-------------------------------------------------------------
+
+        public void llenarTabla(){
+            listaP.Clear();// la vaciamos por si ya hay datos cargados
             string servidor = "localhost";
             string bd = "ferreteria";
             string usuario = "root";
@@ -58,6 +77,10 @@ namespace projectFerreteria
 
             DataTable dt = new DataTable();
             MySqlDataReader resultado;
+
+            
+            
+            
 
 
             try
@@ -95,6 +118,19 @@ namespace projectFerreteria
 
 
                         //MessageBox.Show(contador.ToString());
+                        //----------------------------------------------
+                        Productos newP = new Productos()
+                        {
+                            codigo = resultado.GetString(0),
+                            nombre = resultado.GetString(1),
+                            dimension = resultado.GetString(2),
+                            marca = resultado.GetString(3),
+                            tipo = resultado.GetString(4),
+                            cantidad = resultado.GetString(5),
+                            precio = resultado.GetString(6),
+                            total = valor  
+
+                        }; listaP.Add(newP);// agregamos el producto en la lista
 
                     }
 
@@ -273,6 +309,7 @@ namespace projectFerreteria
         }
         public void buscarProducto()
         {
+            listaP.Clear();
             string where = "where ";
             /* if (txtBuscar.Text != "")
              {
@@ -288,7 +325,7 @@ namespace projectFerreteria
             }
 
 
-
+            double valor = 0;
             string query = "SELECT * FROM productos " + where;
             MySqlCommand comandDB = new MySqlCommand(query, conectDb);
             MySqlDataReader reader;
@@ -312,17 +349,41 @@ namespace projectFerreteria
                             dgInvnetario.Rows[n].Cells[4].Value = reader.GetString(4);
                             dgInvnetario.Rows[n].Cells[5].Value = reader.GetString(5);
                             dgInvnetario.Rows[n].Cells[6].Value = reader.GetString(6);
+                            valor = valor + double.Parse(reader.GetString(6));
+
+                            
+                            Productos newP = new Productos()
+                            {
+                                codigo = reader.GetString(0),
+                                nombre = reader.GetString(1),
+                                dimension = reader.GetString(2),
+                                marca = reader.GetString(3),
+                                tipo = reader.GetString(4),
+                                cantidad = reader.GetString(5),
+                                precio = reader.GetString(6),
+                                total = valor
+
+                            }; listaP.Add(newP);
                         }
                     }
                     reader.Close();
                 }
-                
-                
+                txtValor.Text = valor.ToString();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("No se encontro registros de productos con esa especificacion");
             }
+        }
+
+        private void btnInforme_Click(object sender, EventArgs e)
+        {
+            //llenarTabla();
+
+            // mostramos el formulario de informe
+            Informes informe = new Informes();
+            informe.Show();
         }
     }
 }
