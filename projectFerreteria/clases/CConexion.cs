@@ -22,7 +22,7 @@ namespace projectFerreteria.clases
              string bd = "ferreteria";
              string usuario = "root";
              string pass = "1234567";
-             string puerto = "3307";
+            string puerto = "3307";
 
             string conexion = "server= " + servidor + ";" + "port=" + puerto + ";"
                 + "user id=" + usuario + ";" + "password=" + pass + ";"

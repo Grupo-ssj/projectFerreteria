@@ -93,6 +93,35 @@ namespace projectFerreteria.Properties {
         ///            margin-bottom: 20px;
         ///           [resto de la cadena truncado]&quot;;.
         /// </summary>
+        internal static string plantillaFactura {
+            get {
+                return ResourceManager.GetString("plantillaFactura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;es&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;&lt;/meta&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&lt;/meta&gt;
+        ///    &lt;title&gt;@TITULODOCUMENTO&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        body {
+        ///            font-family: Arial, sans-serif;
+        ///            margin: 20px;
+        ///        }
+        ///
+        ///        .container {
+        ///            text-align: center;
+        ///            margin-bottom: 20px;
+        ///        }
+        ///
+        ///        .container2 {
+        ///            text-align: left;
+        ///            margin-bottom: 20px;
+        ///           [resto de la cadena truncado]&quot;;.
+        /// </summary>
         internal static string plantillaInventario {
             get {
                 return ResourceManager.GetString("plantillaInventario", resourceCulture);
@@ -100,7 +129,27 @@ namespace projectFerreteria.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;es&quot;&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;&lt;/meta&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&lt;/meta&gt;
+        ///    &lt;title&gt;@TITULODOCUMENTO&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        body {
+        ///            font-family: Arial, sans-serif;
+        ///            margin: 20px;
+        ///        }
+        ///
+        ///        .container {
+        ///            text-align: center;
+        ///            margin-bottom: 20px;
+        ///        }
+        ///
+        ///        .container2 {
+        ///            text-align: left;
+        ///            margin-bottom: 20px;
+        ///           [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string plantillaPedido {
             get {

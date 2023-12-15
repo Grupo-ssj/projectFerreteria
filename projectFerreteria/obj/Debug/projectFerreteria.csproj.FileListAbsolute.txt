@@ -127,3 +127,4 @@ C:\xampp\httdocs\projectFerreteria\projectFerreteria\bin\Debug\SpreadsheetLight.
 C:\xampp\httdocs\projectFerreteria\projectFerreteria\bin\Debug\System.IO.Packaging.xml
 C:\xampp\httdocs\projectFerreteria\projectFerreteria\obj\Debug\projectFerreteria.Pedidos.resources
 C:\xampp\httdocs\projectFerreteria\projectFerreteria\obj\Debug\projectFerreteria.Proveedores.resources
+C:\xampp\httdocs\projectFerreteria\projectFerreteria\obj\Debug\projectFerreteria.Ventas.resources

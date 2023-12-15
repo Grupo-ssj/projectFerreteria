@@ -19,14 +19,14 @@ using System.Windows.Forms;
 
 namespace projectFerreteria
 {
-    public partial class Pedidos : Form
+    public partial class Ventas : Form
     {
         int n  = 0;
         double total = 0.00;
         double Isv = 0.00;
         double subTotal = 0.00;
 
-        public Pedidos()
+        public Ventas()
         {
             InitializeComponent();
             txtStotal.Text = subTotal.ToString();
@@ -34,9 +34,10 @@ namespace projectFerreteria
             txtTotal.Text = total.ToString();
             // int n = dgvProductos.Rows.Add();
             
-            txtProveedor.Enabled = false;
-            txtLugar.Enabled = false;
-            txtTelefono.Enabled = false;
+            txtCliente.Enabled = true;
+            txtIdEmpleado.Enabled = true;
+
+            txtNombreEmp.Enabled = true;
             txtProducto.Enabled = false;
             txtMedida.Enabled = false;
             txtStotal.Enabled = false;
@@ -86,7 +87,15 @@ namespace projectFerreteria
             string precioP = "";
             string CantidadP = "";
 
-            string nPedido = txtNcompra.Text;
+            string nVenta = txtNventa.Text;
+            string rtn = "";
+            if (txtRTN.Text==""){
+                rtn = "0000000000001";
+            }
+            else
+            {
+                rtn = txtRTN.Text;
+            }
             DateTime fechaPedido = dtpFecha.Value;
             
             //aqui agregamos el pedido a la base de datos
@@ -99,7 +108,7 @@ namespace projectFerreteria
             }*/
             MySqlConnection conn = CConexion.establecerConexion();
 
-            string insertar = "INSERT INTO Pedido (nPedido,fechaPedido,idProveedor,descripcion) values('" + nPedido + "',now(),'" + txtRTN.Text + "','" + txtDescripcion.Text + "' )";
+            string insertar = "INSERT INTO Venta (nVenta,fechaVenta,idEmpleado,idCliente) values(" + nVenta + ", now(),'" + txtIdEmpleado.Text + "','" + rtn + "' )";
             string insertar2 = "";
 
             try
@@ -109,22 +118,7 @@ namespace projectFerreteria
                 consulta.Connection = conn;
                 consulta.CommandText = insertar;
                 consulta.ExecuteNonQuery();
-                //conn.Close();
-                //MessageBox.Show("Se registro tu pedido con exito");
-
                 
-                /*foreach (DataGridViewRow fila in dgvProductos.Rows)// recorremos todo el datagrid
-                {
-                    codigoP = Convert.ToString(fila.Cells[1].Value);
-                    CantidadP = Convert.ToString(fila.Cells[2].Value);
-                    precioP = Convert.ToString(fila.Cells[3].Value);
-                    insertar2 = "INSERT INTO detallePedido (nPedido,codigo,cantidad,precio) values('" + nPedido + "', '"+codigoP+"', " +CantidadP+ "," + precioP + " )";
-                    
-                    //MessageBox.Show(var1 + var2 + var3);
-
-                    consulta.CommandText = insertar2;
-                    consulta.ExecuteNonQuery();
-                }*/
 
                 int filas = dgvProductos.Rows.Count;
                 for (int i = 0; i < filas - 1; i++)
@@ -133,7 +127,7 @@ namespace projectFerreteria
                     CantidadP = dgvProductos.Rows[i].Cells[3].Value.ToString();
                     precioP = dgvProductos.Rows[i].Cells[4].Value.ToString();
                     
-                    insertar2 = "INSERT INTO detallePedido (nPedido,codigo,cantidad,precio) values('" + nPedido + "', '" + codigoP + "', " + CantidadP + "," + precioP + " )";
+                    insertar2 = "INSERT INTO detalleVenta (nVenta,codigo,cantidad,precio) values('" + nVenta + "', '" + codigoP + "', " + CantidadP + "," + precioP + " )";
                     //Console.WriteLine(insertar2);
 
                     consulta.CommandText = insertar2;
@@ -145,7 +139,7 @@ namespace projectFerreteria
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Error al crear este pedido " + ex.ToString());
+                MessageBox.Show(" Error al crear este venta " + ex.ToString());
                 // Console.WriteLine(" Error al insertar datos del Proveedor", ex.ToString());
             }
         }
@@ -157,7 +151,7 @@ namespace projectFerreteria
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
-          buscarProveedor(txtRTN.Text);
+          buscarEmpleado(txtIdEmpleado.Text);
 
         }
 
@@ -192,93 +186,19 @@ namespace projectFerreteria
 
         private void btnBuscarPedido_Click(object sender, EventArgs e)
         {
-            buscarPedido();
-            buscarProveedor(txtRTN.Text);
+            buscarVenta();
+            buscarEmpleado(txtIdEmpleado.Text);
             buscarDetallesPedido();
-            /*string buscar = "SELECT * FROM pedido WHERE nPedido = '" + txtNcompra.Text + "'";
-            int n = 0;
-            MySqlConnection conn = CConexion.establecerConexion();
-            MySqlCommand con = new MySqlCommand();
-            con.Connection = conn;*/
-            //con.CommandText = buscar;
-
-            /* MySqlDataReader leer = con.ExecuteReader();
-             if (leer.Read())
-             {
-
-
-                 txtRTN.Text = leer.GetString(2);
-
-                 leer.Close();
-             }
-             else
-             {
-
-                 MessageBox.Show("Codigo de Pedido no valido");
-             }*/
-            //string Count = "select count(*) From detallepedido where nPedido = '" + txtNcompra.Text + "' ";
-           /* string b = "SELECT * FROM detallepedido WHERE nPedido = '" + txtNcompra.Text + "' ";
-
-            con.CommandText = b;
-             MySqlDataReader contador = con.ExecuteReader();*/
-             
-                  //string cont = contador.GetString(1);
-                // MessageBox.Show(cont);
-                 //for (int i = 0;i <= contador.Read().ToString(); )
-                //{
-
-                    //n++;
-                    //MessageBox.Show(contador.Read().ToString());
-            //}
-           /* while (contador.Read())
-            {
-
-                //MessageBox.Show(n.ToString());
-                dgvProductos.Rows.Add();
-                dgvProductos.Rows[n].Cells[0].Value = contador.GetString(0);
-                dgvProductos.Rows[n].Cells[1].Value = contador.GetString(1);
-                n++;
-            }*/
-
-
-            //reutilizmos la conexion anterior y solo acualizamos la cadena buscar
-
-            // string buscar2 = "SELECT * FROM detallepedido WHERE nPedido = '" + txtNcompra.Text + "' ";
-           /* string buscar2 = "SELECT * FROM detallepedido ";
-            con.CommandText = buscar2;
-            MySqlDataReader leer = con.ExecuteReader();// creamos un leer2 ya que no podemos reutilizar el primero
-
-            int j = 0;
-
-            if (leer.Read())
-            {
-                if (leer.HasRows)
-                {
-                    while (leer.Read())
-                    {
-                        //int l = dgvProductos.Rows.Add();
-                        //dgvProductos.Rows[l].Cells[0].Value = leer.GetString(1);
-                        j++;
-                    }
-                    MessageBox.Show(j.ToString());
-                }
-                
-            }
-            else
-            {
-                MessageBox.Show("Error al leer productos del pedido");
-            } */
-
-
-           // conn.Close();
+           
         }
+
         public void buscarDetallesPedido()
         {
             int l = 0;
             MySqlConnection conn = CConexion.establecerConexion();
             MySqlCommand con = new MySqlCommand();
             con.Connection = conn;
-            string b = "SELECT * FROM detallepedido WHERE nPedido = '" + txtNcompra.Text + "' ";
+            string b = "SELECT * FROM detalleVenta WHERE nPedido = '" + txtNventa.Text + "' ";
 
             con.CommandText = b;
             MySqlDataReader contador = con.ExecuteReader();
@@ -355,9 +275,9 @@ namespace projectFerreteria
 
             
         }
-        public void buscarProveedor(string codigo)
+        public void buscarEmpleado(string idEmpleado)
         {
-            string buscar = "SELECT * FROM proveedor WHERE idProveedor = '" + codigo + "'";
+            string buscar = "SELECT * FROM Empleado WHERE idEmpleado = '" + idEmpleado + "'";
             MySqlConnection conn = CConexion.establecerConexion();
             MySqlCommand con = new MySqlCommand();
             con.Connection = conn;
@@ -367,21 +287,20 @@ namespace projectFerreteria
             if (leer.Read())
             {
 
-                // solo los datos que ocupamos para el formulario
-                txtProveedor.Text = leer.GetString(1);
-                txtTelefono.Text = leer.GetString(2);
-                txtLugar.Text = leer.GetString(4);
+               
+               txtNombreEmp.Text = leer.GetString(1);
+                
 
 
 
-                // btnEditarUsuario.Enabled = true;
+               
             }
             else
             {
-                // btnEditarUsuario.Enabled = false;
-                MessageBox.Show("RTN no valido");
+                
+                MessageBox.Show("ID de empleado no valido");
             }
-            //return usuarioN;
+           
 
 
             conn.Close();
@@ -391,9 +310,9 @@ namespace projectFerreteria
         {
 
         }
-        public void buscarPedido()
+        public void buscarVenta()
         {
-            string buscar = "SELECT * FROM pedido WHERE nPedido = '" + txtNcompra.Text + "'";
+            string buscar = "SELECT * FROM Venta WHERE nVenta = '" + txtNventa.Text + "'";
             int n = 0;
             MySqlConnection conn = CConexion.establecerConexion();
             MySqlCommand con = new MySqlCommand();
@@ -406,7 +325,7 @@ namespace projectFerreteria
                 {
 
 
-                    txtRTN.Text = leer.GetString(2);
+                    txtRTN.Text = leer.GetString(3);
 
                     leer.Close();
                 }
@@ -420,7 +339,7 @@ namespace projectFerreteria
             }
             conn.Clone();
         }
-        public void imprimirPedido()
+        public void imprimirVenta()
         {
             int contador = 0;//intentamos saber cuantos registros van en un ahoja
             //tomar fecha
@@ -434,32 +353,28 @@ namespace projectFerreteria
             guardar.FileName = archivo + ".pdf";// le damos el formato al archivo
 
             // usamos la plantilla de html para inventario
-            string pageHTML = Properties.Resources.plantillaPedido.ToString();
+            string pageHTML = Properties.Resources.plantillaFactura.ToString();
             //string pageHTML = "<table><tr><td>TEXTO TEXTO </td></tr></table>";
             // reemplazo de datos
-            pageHTML = pageHTML.Replace("@TITULODOCUMENTO", "Informe del Pedido");
-            pageHTML = pageHTML.Replace("@TITULO", "Informe de Pedido");
+            //pageHTML = pageHTML.Replace("@TITULODOCUMENTO", "Factura");
+            //pageHTML = pageHTML.Replace("@TITULO", "Factura");
             pageHTML = pageHTML.Replace("@RTN", txtRTN.Text);
-            pageHTML = pageHTML.Replace("@PROVEEDOR", txtProveedor.Text);
-            pageHTML = pageHTML.Replace("@DIRECCION", txtLugar.Text);
-            pageHTML = pageHTML.Replace("@TEL", txtTelefono.Text);
+            pageHTML = pageHTML.Replace("@CLIENTE", txtCliente.Text);
+            pageHTML = pageHTML.Replace("@EMPLEADO", txtNombreEmp.Text);
+            //pageHTML = pageHTML.Replace("@DIRECCION", txtIdEmpleado.Text);
+            //pageHTML = pageHTML.Replace("@TEL", txtNombreEmp.Text);
 
-            pageHTML = pageHTML.Replace("@NPEDIDO", txtNcompra.Text);
-            pageHTML = pageHTML.Replace("@FECHAPEDIDO", fecha.ToString());
+            pageHTML = pageHTML.Replace("@NVenta", txtNventa.Text);
+            pageHTML = pageHTML.Replace("@FECHAVENTA", fecha.ToString());
 
             string datos = string.Empty;
             double valor = 0;
             string headerTable = string.Empty;
             headerTable += "<thead>";
             headerTable += "<tr>";
-            headerTable += "<th>" + "Codigo" + "</th>";
             headerTable += "<th>" + "Producto" + "</th>";
-            headerTable += "<th>" + "Medida" + "</th>";
             headerTable += "<th>" + "Cantidad" + "</th>";
             headerTable += "<th>" + "Precio Unitario" + "</th>";
-            headerTable += "<th>" + "Sub-Total" + "</th>";
-            headerTable += "<th>" + "ISV" + "</th>";
-            headerTable += "<th>" + "Total" + "</th>";
             headerTable += "</tr>";
             headerTable += "</thead>";
             pageHTML = pageHTML.Replace("@HEADERS", headerTable);
@@ -472,14 +387,9 @@ namespace projectFerreteria
                 
 
                 datos += "<tr>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[0].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[1].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[2].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[3].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[4].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[5].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[6].Value.ToString() + "</td>";
-                datos += "<td>" + dgvProductos.Rows[i].Cells[7].Value.ToString() + "</td>";
+                datos += "<td>" + dgvProductos.Rows[i].Cells[1].Value.ToString() + "</td>";//producto
+                datos += "<td>" + dgvProductos.Rows[i].Cells[3].Value.ToString() + "</td>";//cantidad
+                datos += "<td>" + dgvProductos.Rows[i].Cells[4].Value.ToString() + "</td>";//precio
                 datos += "</tr>";
                 //valor = Producto.total;
                 //contador++;
@@ -490,11 +400,13 @@ namespace projectFerreteria
 
 
             // pageHTML = pageHTML.Replace("@HEADERS", headerTable);
+            pageHTML = pageHTML.Replace("@DATOS", datos);
+
             pageHTML = pageHTML.Replace("@SUBT", txtStotal.Text);
             pageHTML = pageHTML.Replace("@ISV", txtIsv.Text);
             pageHTML = pageHTML.Replace("@TOTAL", txtTotal.Text);
-            pageHTML = pageHTML.Replace("@DATOS", datos);
-            pageHTML = pageHTML.Replace("@COMENTARIOS", txtDescripcion.Text);
+            
+           // pageHTML = pageHTML.Replace("@COMENTARIOS", txtDescripcion.Text);
             //---------------------------------------------------------------------
 
             if (guardar.ShowDialog() == DialogResult.OK)
@@ -502,7 +414,7 @@ namespace projectFerreteria
                 using (FileStream stream = new FileStream(guardar.FileName, FileMode.Create))
                 {
                     
-                    Document pdfDoc = new Document(PageSize.A4.Rotate(), 25, 25, 25, 25);
+                    Document pdfDoc = new Document(PageSize.A6, 25, 25, 25, 25);
 
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
 
@@ -527,7 +439,7 @@ namespace projectFerreteria
 
         private void btnImprimirPedido_Click(object sender, EventArgs e)
         {
-            imprimirPedido();
+            imprimirVenta();
         }
 
         private void txtNcompra_TextChanged(object sender, EventArgs e)

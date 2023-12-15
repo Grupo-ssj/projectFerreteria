@@ -51,6 +51,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(205)))), ((int)(((byte)(223)))));
             this.panel1.Controls.Add(this.btnBuscar);
             this.panel1.Controls.Add(this.btnEditar);
             this.panel1.Controls.Add(this.cbCategoria);
@@ -71,7 +72,7 @@
             this.panel1.Location = new System.Drawing.Point(2, -1);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(865, 474);
+            this.panel1.Size = new System.Drawing.Size(867, 490);
             this.panel1.TabIndex = 0;
             // 
             // btnBuscar

@@ -43,16 +43,16 @@ namespace projectFerreteria
         }
         public void abrirForm(object formulario)
         {
-            this.dgContenedor.Controls.Clear();
-            if (this.dgContenedor.Controls.Count >0)
-                this.dgContenedor.Controls.RemoveAt(0);
+            this.dgcontenedor.Controls.Clear();
+            if (this.dgcontenedor.Controls.Count >0)
+                this.dgcontenedor.Controls.RemoveAt(0);
 
             Form form = formulario as Form;
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            this.dgContenedor.Controls.Add(form);
-            this.dgContenedor.Tag = form;
+            this.dgcontenedor.Controls.Add(form);
+            this.dgcontenedor.Tag = form;
             
             form.Show();
         }
@@ -99,6 +99,26 @@ namespace projectFerreteria
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             abrirForm(new Proveedores());
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            abrirForm(new Ventas());
+        }
+
+        private void dgContenedor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

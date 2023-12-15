@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelInventario = new System.Windows.Forms.Panel();
+            this.btnInforme = new System.Windows.Forms.Button();
             this.pnInventario = new System.Windows.Forms.Panel();
             this.dgInvnetario = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,7 +46,6 @@
             this.btnBitacora = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.btnInforme = new System.Windows.Forms.Button();
             this.panelInventario.SuspendLayout();
             this.pnInventario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvnetario)).BeginInit();
@@ -53,6 +53,7 @@
             // 
             // panelInventario
             // 
+            this.panelInventario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(205)))), ((int)(((byte)(223)))));
             this.panelInventario.Controls.Add(this.btnInforme);
             this.panelInventario.Controls.Add(this.pnInventario);
             this.panelInventario.Controls.Add(this.btnRefrescar);
@@ -67,6 +68,16 @@
             this.panelInventario.Size = new System.Drawing.Size(804, 450);
             this.panelInventario.TabIndex = 0;
             this.panelInventario.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInventario_Paint);
+            // 
+            // btnInforme
+            // 
+            this.btnInforme.Location = new System.Drawing.Point(630, 397);
+            this.btnInforme.Name = "btnInforme";
+            this.btnInforme.Size = new System.Drawing.Size(75, 23);
+            this.btnInforme.TabIndex = 9;
+            this.btnInforme.Text = "Informe";
+            this.btnInforme.UseVisualStyleBackColor = true;
+            this.btnInforme.Click += new System.EventHandler(this.btnInforme_Click);
             // 
             // pnInventario
             // 
@@ -193,16 +204,6 @@
             this.txtBuscar.Size = new System.Drawing.Size(160, 20);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            // 
-            // btnInforme
-            // 
-            this.btnInforme.Location = new System.Drawing.Point(630, 397);
-            this.btnInforme.Name = "btnInforme";
-            this.btnInforme.Size = new System.Drawing.Size(75, 23);
-            this.btnInforme.TabIndex = 9;
-            this.btnInforme.Text = "Informe";
-            this.btnInforme.UseVisualStyleBackColor = true;
-            this.btnInforme.Click += new System.EventHandler(this.btnInforme_Click);
             // 
             // Inventario
             // 
